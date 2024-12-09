@@ -2,6 +2,10 @@ package org.example;
 
 import java.util.ArrayList;
 
+/**
+ * Name: Cheryl Kong
+ * Class Group: SD2B
+ */
 public class Main {
     public static void main(String[] args) {
         ContainerManager manager = new ContainerManager();
