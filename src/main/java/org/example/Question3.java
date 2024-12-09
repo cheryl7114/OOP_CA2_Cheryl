@@ -6,14 +6,11 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * Name: Harris Teh Kai Ze
+ * Name: Cheryl Kong
  * Class Group: SD2B
  */
 public class Question3 { // Nested HTML (Stack)
 
-    /*
-     * filename: name of the file to test.
-     */
     public static boolean validate(String filename) throws FileNotFoundException {
         String[] selfClosingTags = { "<br>", "<img>", "<hr>", "<input>", "<meta>", "<link>" };
 
@@ -23,7 +20,7 @@ public class Question3 { // Nested HTML (Stack)
         while (sc.hasNext()) {
             String tag = sc.next();
 
-            // Check if it's a self-closing tag
+            // check if it's a self-closing tag
             boolean isSelfClosing = false;
             for (String selfClosingTag : selfClosingTags) {
                 if (tag.equals(selfClosingTag)) {

@@ -1,51 +1,75 @@
 package org.example;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
- *  Name: Cheryl Kong
- *  Class Group: SD2B
+ * Name: Cheryl Kong
+ * Class Group: SD2B
  */
 
-public class Question4  // Flood Fill (Stack, 2D Array)
+public class Question4 // Flood Fill (Stack, 2D Array)
 {
-    static final int ROWS = 5;
-    static final int COLUMNS = 5;
-
     public static void main(String[] args) {
-        System.out.println("Question 4. Floodfill algorithm.");
-
-        // Starter matrix (2D Array) with 0 representing an empty cell,
-        // and -1 representing a wall. Flood fill can not cross through
-        // a wall ( and not pass through diagionally).
-        //
-        int[][] matrix = new int[ROWS][COLUMNS]; // 2D Array of int
-        // define values for each row, -1 to prevent change
-        matrix[0] = new int[]{ 0, 0, -1, -1, 0};
-        matrix[1] = new int[]{ 0, 0, -1, -1, 0};
-        matrix[2] = new int[]{-1, 0,  0,  0, 0};
-        matrix[3] = new int[]{-1, 0, -1, -1, 0};
-        matrix[4] = new int[]{ 0,-1, -1,  0, 0};
-
-        display(matrix);
-
+        start();
     }
 
-    /*
-        Helper function to display the 2D Array
-     */
+    public static void start() {
+        int[][] arr = floodFillStart();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter starting row (0-9): ");
+        int startRow = scanner.nextInt();
+        System.out.print("Enter starting column (0-9): ");
+        int startCol = scanner.nextInt();
+        fill(arr, startRow, startCol);
+        display(arr);
+
+        scanner.close();
+    }
+
+    //  create the 2D array and populate it with zeros
+    public static int[][] floodFillStart() {
+        int[][] arr = new int[10][10];
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
+                arr[x][y] = 0;
+            }
+        }
+        return arr;
+    }
+
+    private static void fill(int[][] arr, int startRow, int startCol) {
+        Stack<Cell> stack = new Stack<>();
+        // pushes the row and column input (e.g. 0 and 0)
+        stack.push(new Cell(startRow, startCol));
+        int fillNumber = 1;
+
+        while (!stack.isEmpty()) {
+            // pop the coordinates 0 and 0
+            Cell cell = stack.pop();
+            int row = cell.row;
+            int col = cell.column;
+
+            if (row >= 0 && row < 10 && col >= 0 && col < 10 && arr[row][col] == 0) {
+                // row 0 and col 0 should be 1
+                arr[row][col] = fillNumber++;
+                // north, south, east, west
+                stack.push(new Cell(row - 1, col));
+                stack.push(new Cell(row + 1, col));
+                stack.push(new Cell(row, col - 1));
+                stack.push(new Cell(row, col + 1));
+            }
+        }
+    }
+
+    // display image
     public static void display(int[][] arr) {
-        for (int x = 0; x < ROWS; x++) {
-            for (int y = 0; y < COLUMNS; y++) {
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
                 System.out.printf("%4d", arr[x][y]);
             }
             System.out.println();
         }
-    }
-
-    private static void floodFill(int r, int c, int[][] arr) {
-
     }
 
 }
