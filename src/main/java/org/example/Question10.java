@@ -2,21 +2,11 @@ package org.example;
 
 import java.util.Stack;
 
+/**
+ *  Name: Cheryl Kong
+ *  Class Group: SD2B
+ */
 public class Question10 {
-    // define movement directions
-    public enum DIRECTION {
-        RIGHT(0, 1),
-        DOWN(1, 0),
-        LEFT(0, -1),
-        UP(-1, 0);
-
-        int dx, dy;
-
-        DIRECTION(int dx, int dy) {
-            this.dx = dx;
-            this.dy = dy;
-        }
-    }
 
     // display/ visualize the maze
     public static void display(char[][] maze) {
