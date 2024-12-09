@@ -26,6 +26,12 @@ public class Question9 {
 
         for (int i=0;i<equation.length();i++) {
             char ch = equation.charAt(i);
+
+            // skip spaces
+            if (Character.isWhitespace(ch)) {
+                continue;
+            }
+
             if (Character.isDigit(ch)) {
                 int num = 0;
                 while (i<equation.length() && Character.isDigit(equation.charAt(i))) {

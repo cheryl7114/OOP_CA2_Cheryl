@@ -17,8 +17,13 @@ public class DistanceTo implements Comparable<DistanceTo> {
     {
         return distance;
     }
-    public int compareTo(DistanceTo other)
-    {
-        return distance - other.distance;
+
+    // compare distances to prioritize shorter distances in the priority queue
+    public int compareTo(DistanceTo other) {
+        int distanceComparison = Integer.compare(this.distance, other.distance);
+        if (distanceComparison != 0) {
+            return distanceComparison; // compare by distance first
+        }
+        return this.target.compareTo(other.target); // compare by city name if distances are equal
     }
 }
